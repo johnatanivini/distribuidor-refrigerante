@@ -33,7 +33,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>
+                            <a class="btn btn-primary mr-1" href="#cadastroProduto" data-toggle="modal">Cadastrar Produto</a>
+                        </li>
+                        <li>
+                            <a  class="btn btn-primary mr-1" href="#cadastroMarca" data-toggle="modal">Cadastrar Marca</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary mr-1"  href="#cadastroTipo" data-toggle="modal">Cadastrar Tipos</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary mr-1" href="#cadastroLitragem" data-toggle="modal">Cadastrar Litragens</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
