@@ -4,7 +4,7 @@
 - Mysql 8+
 - Linux Ubuntu 16+ 
 
-# Instalação do Sistema
+## Instalação do Sistema
 
 O sistema está desenvolvido em Laravel 5.8, com banco de dados MYSQL 8+.
 Para ver o projeto rodando, faça o clone deste projeto e salve em algum lugar do seu ambiente de trabalho.
@@ -13,7 +13,7 @@ Após fazer o clone, entre na pasta e execute a atualização dos pacotes depend
 
 `composer install ` ou `composer update`
 
-#Permissões
+## Permissões
 
 Dê permissão nas pastas `storage` e `config/cache` para o sistema criar os seus arquivos
 
@@ -25,7 +25,7 @@ Após a instalação gere a secrete key para validar o sistema:
 
 `php artisan key:generate`
 
-#Banco de dados
+## Banco de dados
 
 O Banco de dados, no qual o projeto está setado é Mysql
 Crie um banco com o nome `distribuidor_bebidas`
@@ -42,7 +42,7 @@ DB_PASSWORD=<senha_banco>
 
 ```
 
-#Executando criação das tabelas
+## Executando criação das tabelas
 
 Para criar as tabelas responsáveis, entre na raiz do sistema, onde o mesmo foi clonado e execute:
 
