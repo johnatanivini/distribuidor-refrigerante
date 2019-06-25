@@ -8,4 +8,8 @@ class Litragem extends Model
 {
     protected $table = 'litragens';
 
+    public function produto(){
+        return $this->hasOne('App\Produto');
+    }
+
 }

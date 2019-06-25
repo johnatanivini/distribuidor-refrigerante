@@ -7,31 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
 
-
     public function marca()
     {
-        return $this->hasOne('App\Marca');
+        return $this->belongsTo('App\Marca');
     }
 
     public function sabor()
     {
-        return $this->hasOne('App\Sabor');
+        return $this->belongsTo('App\Sabor');
     }
 
     public function tipo()
     {
-        return $this->hasOne('App\Tipo');
+        return $this->belongsTo('App\Tipo');
     }
 
     public function litragem(){
-        return $this->hasOne('App\Litragem');
+        return $this->belongsTo('App\Litragem');
     }
 
-    public function item(){
-        return $this->belongsTo('App\Item','produto_id');
-    }
-
-    public function quantidade(){
-        return $this->belongsTo('App\Quantidade','produto_id');
-    }
 }

@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "font-awesome": "^4.7.0",
         "jquery-mask-plugin": "^1.14.15",
         "jquery-validation": "^1.19.1"
     }

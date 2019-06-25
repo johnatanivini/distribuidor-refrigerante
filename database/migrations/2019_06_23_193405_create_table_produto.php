@@ -20,8 +20,6 @@ class CreateTableProduto extends Migration
             $table->unsignedBigInteger('tipo_id');
             $table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('litragem_id');
-            $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('quantidade_id');
             $table->unique([
                 'litragem_id',
                 'marca_id',

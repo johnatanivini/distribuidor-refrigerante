@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddConstrainsItens extends Migration
+class AddColumnProdutos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddConstrainsItens extends Migration
      */
     public function up()
     {
-        Schema::table('itens', function (Blueprint $table) {
-            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+        Schema::table('produtos', function (Blueprint $table) {
+            $table->decimal('valor',10,2);
+            $table->integer('quantidade');
+
         });
     }
 
@@ -25,7 +27,7 @@ class AddConstrainsItens extends Migration
      */
     public function down()
     {
-        Schema::table('itens', function (Blueprint $table) {
+        Schema::table('produtos', function (Blueprint $table) {
             //
         });
     }

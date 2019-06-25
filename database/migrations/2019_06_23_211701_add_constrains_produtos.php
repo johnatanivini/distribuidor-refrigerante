@@ -18,8 +18,6 @@ class AddConstrainsProdutos extends Migration
             $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
             $table->foreign('litragem_id')->references('id')->on('litragens')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('itens');
-            $table->foreign('quantidade_id')->references('id')->on('quantidades');
         });
     }
 

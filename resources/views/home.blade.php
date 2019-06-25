@@ -5,7 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{__("messages.dashboard")}} </div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{__("messages.dashboard")}}
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a class="btn btn-outline-primary mr-1" href="#cadastroProduto" data-toggle="modal"><i class="fa fa-plus-circle"></i> Produto</a>
+                            <a  class="btn btn-outline-info mr-1" href="#cadastroMarca" data-toggle="modal"><i class="fa fa-plus-circle"></i> Marca</a>
+                            <a class="btn btn-outline-danger mr-1"  href="#cadastroTipo" data-toggle="modal"><i class="fa fa-plus-circle"></i> Tipos</a>
+                            <a class="btn btn-outline-success mr-1" href="#cadastroLitragem" data-toggle="modal"><i class="fa fa-plus-circle"></i> Litragens</a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card-body">
 
@@ -17,23 +29,101 @@
                     <h1>Lista de Refrigerentes </h1>
                     <div class="row">
                         <div class="col-sm-12">
-                            <form>
-                                <div class="form-group">
-                                    <label>
-                                        Marca
-                                    </label>
-                                    <select name="marca" class="form-control">
-                                        <option value="">Selecione</option>
-                                        @foreach($marcas as $marca)
-                                            <option value="{{$marca->id}}">{{$marca->descricao}}</option>
-                                        @endforeach
-                                    </select>
+                            <form id="filtroProdutos" action="/home">
+                                <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>
+                                            Marca
+                                        </label>
+                                        <select name="marca" class="form-control">
+                                            <option value="">Selecione</option>
+                                            @foreach($marcas as $marca)
+                                                <option value="{{$marca->id}}">{{$marca->descricao}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>
+                                            Tipos
+                                        </label>
+                                        <select name="marca" class="form-control">
+                                            <option value="">Selecione</option>
+                                            @foreach($tipos as $marca)
+                                                <option value="{{$marca->id}}">{{$marca->descricao}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>
+                                            Sabores
+                                        </label>
+                                        <select name="marca" class="form-control">
+                                            <option value="">Selecione</option>
+                                            @foreach($sabores as $marca)
+                                                <option value="{{$marca->id}}">{{$marca->descricao}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>
+                                            Litragem
+                                        </label>
+                                        <select name="marca" class="form-control">
+                                            <option value="">Selecione</option>
+                                            @foreach($litragem as $marca)
+                                                <option value="{{$marca->id}}">{{$marca->descricao}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                    <div class="col-sm-1">
+                                        <div class="form-group">
+                                            <label>
+                                                Quantidade
+                                            </label>
+                                            <input type="number" class="form-control" name="quantidade">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>
+                                                Valor
+                                            </label>
+                                            <input type="text" class="form-control" name="valor">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <div class="form-group">
+                                            <br>
+                                            <button class="btn btn-primary mt-2">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <table class="table table-bordered table-striped">
-                    @if(count($produtos) > 0)
+                        <tr>
+                            <th>ID</th>
+                            <th>MARCA</th>
+                            <th>TIPO</th>
+                            <th>SABOR</th>
+                            <th>LITROS</th>
+                            <th>VALOR</th>
+                            <th>QUANTIDADE</th>
+                            <th width="30">
+                                AÇÕES
+                            </th>
+                        </tr>
                     @foreach($produtos as $produto)
                         <tr>
                             <td>{{$produto->id}}</td>
@@ -41,15 +131,18 @@
                             <td>{{$produto->tipo->descricao}}</td>
                             <td>{{$produto->sabor->descricao}}</td>
                             <td>{{$produto->litragem->descricao}}</td>
-                            <td>{{$produto->item->valor}}</td>
-                            <td>{{$produto->quantidade->quantidade}}</td>
+                            <td>{{$produto->valor}}</td>
+                            <td>{{$produto->quantidade}}</td>
+                            <td>
+                                <a href="/home/produto/editar/{{$produto->id}}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="/home/produto/excluir/{{$produto->id}}" class="text-danger">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
-                    @else
-                        <tr>
-                            <td colspan="7">{{ __("messages.table_nothing") }}</td>
-                        </tr>
-                    @endif
                     </table>
                     @if(count($produtos) > 0)
                         {{$produtos->links()}}
@@ -82,6 +175,15 @@
                             @endforeach
                         </select>
                     </div>
+                <div class="form-group">
+                    <label>Sabor:</label>
+                    <select id="marca" name="sabor" class="form-control">
+                        <option value="">Selecione um sabor</option>
+                        @foreach($sabores as $sabor)
+                            <option value="{{$sabor->id}}">{{$sabor->descricao}}</option>
+                        @endforeach
+                    </select>
+                </div>
                     <div class="form-group">
                         <label>Tipo:</label>
                         <select id="tipo" name="tipo" class="form-control">
