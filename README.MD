@@ -2,7 +2,7 @@
 # Demo
 Para  visualizar a demo clique no lin abaixo:
 
-http://mysterious-gorge-76604.herokuapp.com/login
+http://desafio-fullstack-john.herokuapp.com/login
 
 # Requisitos
 
