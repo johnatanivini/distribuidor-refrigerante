@@ -1,22 +1,20 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PrimeiroTest extends TestCase
+class ProdutoTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * A basic unit test example.
      *
      * @return void
      */
     public function testExample()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->assertTrue(true);
     }
 }

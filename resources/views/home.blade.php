@@ -27,6 +27,7 @@
                         </div>
                     @endif
                     <h1>Lista de Refrigerentes </h1>
+                        <hr>
                     <div class="row">
                         <div class="col-sm-12">
                             <form id="filtroProdutos" action="/home">
@@ -49,7 +50,7 @@
                                         <label>
                                             Tipos
                                         </label>
-                                        <select name="marca" class="form-control">
+                                        <select name="tipo" class="form-control">
                                             <option value="">Selecione</option>
                                             @foreach($tipos as $marca)
                                                 <option value="{{$marca->id}}">{{$marca->descricao}}</option>
@@ -62,7 +63,7 @@
                                         <label>
                                             Sabores
                                         </label>
-                                        <select name="marca" class="form-control">
+                                        <select name="sabor" class="form-control">
                                             <option value="">Selecione</option>
                                             @foreach($sabores as $marca)
                                                 <option value="{{$marca->id}}">{{$marca->descricao}}</option>
@@ -75,7 +76,7 @@
                                         <label>
                                             Litragem
                                         </label>
-                                        <select name="marca" class="form-control">
+                                        <select name="litragem" class="form-control">
                                             <option value="">Selecione</option>
                                             @foreach($litragem as $marca)
                                                 <option value="{{$marca->id}}">{{$marca->descricao}}</option>
@@ -88,7 +89,7 @@
                                             <label>
                                                 Quantidade
                                             </label>
-                                            <input type="number" class="form-control" name="quantidade">
+                                            <input type="number" id="quantidade" class="form-control" min="1" max="99999" name="quantidade">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -96,7 +97,7 @@
                                             <label>
                                                 Valor
                                             </label>
-                                            <input type="text" class="form-control" name="valor">
+                                            <input type="text" id="valor"  class="form-control money" name="valor">
                                         </div>
                                     </div>
                                     <div class="col-sm-1">
@@ -105,13 +106,17 @@
                                             <button class="btn btn-primary mt-2">
                                                 <i class="fa fa-search"></i>
                                             </button>
+                                            <a href="{{ url('home') }}" title="Limpar filtro" class="btn btn-primary mt-2">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
+                        <hr>
+                    <table class="table table-bordered table-striped" id="tableProdutos">
                         <tr>
                             <th>ID</th>
                             <th>MARCA</th>
@@ -131,13 +136,13 @@
                             <td>{{$produto->tipo->descricao}}</td>
                             <td>{{$produto->sabor->descricao}}</td>
                             <td>{{$produto->litragem->descricao}}</td>
-                            <td>{{$produto->valor}}</td>
+                            <td>R$ {{number_format($produto->valor,2,',','.')}}</td>
                             <td>{{$produto->quantidade}}</td>
                             <td>
-                                <a href="/home/produto/editar/{{$produto->id}}">
+                                <a href="/produtos/editar/{{$produto->id}}" class="editar">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="/home/produto/excluir/{{$produto->id}}" class="text-danger">
+                                <a href="/produtos/excluir/{{$produto->id}}" class="text-danger excluir">
                                     <i class="fa fa-close"></i>
                                 </a>
                             </td>
@@ -177,7 +182,7 @@
                     </div>
                 <div class="form-group">
                     <label>Sabor:</label>
-                    <select id="marca" name="sabor" class="form-control">
+                    <select id="sabor" name="sabor" class="form-control">
                         <option value="">Selecione um sabor</option>
                         @foreach($sabores as $sabor)
                             <option value="{{$sabor->id}}">{{$sabor->descricao}}</option>
@@ -204,13 +209,13 @@
                     </div>
                     <div class="form-group">
                         <label>Quantidade:</label>
-                        <input type="number" value="" min="0" max="999999"  class="form-control"  name="quantidade" />
+                        <input type="number" value="" id="quantidade" min="0" max="999999"  class="form-control"  name="quantidade" />
                     </div>
                     <div class="form-group">
                         <label>Valor unitário:</label>
-                        <input  name="valor" id="valor" value="" class="form-control money" />
+                        <input  name="valor" id="valor" value=""  class="form-control money" />
                     </div>
-                    <input type="hidden" name="produto_id" />
+                    <input type="hidden" name="produto" id="produto_id"/>
               @csrf
 
             </div>

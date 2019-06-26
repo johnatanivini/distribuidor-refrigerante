@@ -69,4 +69,8 @@ E acesse o ip mencionado no comando, geralmente é:
 
 `localhost:8000`
 
-É isso.
+##tests 
+Uso do pacote phpunit/phpunit
+
+Execução dos testes:
+

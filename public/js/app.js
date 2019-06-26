@@ -51630,6 +51630,35 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 $(function () {
+  $('.money').mask('#.##0,00', {
+    reverse: true
+  });
+  $('.editar').on('click', function (e) {
+    e.preventDefault();
+    $.get($(this).attr('href'), function (data) {
+      var cadastro = $('#cadastroProduto');
+      cadastro.find('#marca').val(data.dados.marca.id);
+      cadastro.find('#tipo').val(data.dados.tipo.id);
+      cadastro.find('#sabor').val(data.dados.sabor.id);
+      cadastro.find('#valor').val(data.dados.valor);
+      cadastro.find('#litragem').val(data.dados.litragem.id);
+      cadastro.find('#quantidade').val(data.dados.quantidade);
+      cadastro.find('#produto_id').val(data.dados.id);
+      $('.money').mask('#.##0,00', {
+        reverse: true
+      });
+      $('#cadastroProduto').modal('show');
+    });
+  });
+  $('.excluir').on('click', function (e) {
+    e.preventDefault();
+
+    if (confirm('Deseja deletar esse produto :')) {
+      $.get($(this).attr('href'), function (data) {
+        alert(data.message);
+      });
+    }
+  });
   $('#formProduto').validate({
     lang: 'pt_BR',
     rules: {
@@ -51680,17 +51709,19 @@ $(function () {
         dataType: 'json',
         data: forms.serialize(),
         beforeSend: function beforeSend() {
-          forms.css({
-            'opacity': .5
-          });
+          forms.find('button[type="submit"]').prop('disabled', true);
           console.log('enviando..');
         },
         success: function success(data) {
           alert('Dados salvo com sucesso!');
-          location.href = forms.prop('/home');
+          window.location.reload();
         },
         error: function error(xhr) {
           alert(JSON.parse(xhr.responseText).message);
+          forms.find('button').prop('disabled', false);
+          forms.css({
+            'opacity': 1
+          });
         }
       });
       return false;
