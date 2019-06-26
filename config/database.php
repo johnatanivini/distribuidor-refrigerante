@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
-if(getenv('SQL_URL')) {
-    $url = parse_url(getenv('SQL_URL'));
+if(getenv('CLEARDB_DATABASE_URL')) {
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
 
     putenv('DB_HOST='.$url['host']);
     putenv('DB_PORT='.$url['port']);
