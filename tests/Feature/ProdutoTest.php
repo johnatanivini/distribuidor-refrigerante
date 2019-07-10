@@ -39,10 +39,10 @@ class ProdutoTest extends TestCase
     }
 
     public function testDelete(){
-        $produto = $this->get('/produtos/excluir/3');
+        $produto = $this->get('/produtos/excluir/4');
 
         $this->assertDatabaseMissing('produtos',[
-            'id'=>3
+            'id'=>4
         ]);
     }
 
