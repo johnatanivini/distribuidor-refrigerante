@@ -42,6 +42,8 @@ class StoreProdutoController extends Controller
             }
 
 
+            $this->createService->salvar($request);
+
             return $response->header('content-type', 'application/json')->setContent([
                 'message' => 'Dados salvo com sucesso!'
             ])->setStatusCode(200);

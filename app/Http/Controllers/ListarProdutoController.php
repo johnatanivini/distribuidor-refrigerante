@@ -34,7 +34,7 @@ class ListarProdutoController extends Controller
     public function index(Request $request)
     {
 
-        $produtos = $this->listarService->listar($request);
+        $produtos = $this->listarService->listar($request)->paginate(10);
 
         return view('home', [
             'produtos' => $produtos,

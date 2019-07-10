@@ -30,7 +30,7 @@ class EditarProdutoService implements EditarServiceInterface
     public function editar($id)
     {
 
-        $this->repository->find($id);
+        return $this->repository->find($id);
 
     }
 
