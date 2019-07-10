@@ -1,12 +1,21 @@
 $(function () {
 
+
+    $('#cadastroProduto').on('hide.bs.modal',function(){
+
+        let cadastro = $('#cadastroProduto');
+        cadastro.find('input').val('');
+        cadastro.find('select').val('');
+
+    });
+
     $('.money').mask('#.##0,00',{reverse:true});
 
         $('.editar').on('click',function(e){
             e.preventDefault();
            $.get($(this).attr('href'),function(data){
 
-               let cadastro = $('#cadastroProduto');
+               let cadastro = $('#formProduto');
 
                cadastro.find('#marca').val(data.dados.marca.id);
                cadastro.find('#tipo').val(data.dados.tipo.id);

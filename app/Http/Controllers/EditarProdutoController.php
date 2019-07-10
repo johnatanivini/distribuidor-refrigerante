@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Produto;
+use App\Services\Contracts\EditarServiceInterface;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -10,34 +10,35 @@ use Illuminate\Http\Response;
 class EditarProdutoController extends Controller
 {
 
+    private $editarService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(EditarServiceInterface $editarService)
     {
+        $this->editarService = $editarService;
+
         $this->middleware('auth');
     }
 
-    public function editar($id,Request $request,Response $response){
+    public function editar($id, Request $request, Response $response)
+    {
 
-        try{
+        try {
 
-            $produto =  Produto::with(['tipo','sabor','marca','litragem'])->find($id)->toArray();
+            $produto = $this->editarService->editar($id);
 
-            if(!$produto){
-                throw  new \Exception('Produto não existe');
-            }
-
-            return $response->header('content-type','application/json')->setContent([
-                'message'=>'Obter produto',
-                'dados'=>$produto
+            return $response->header('content-type', 'application/json')->setContent([
+                'message' => 'Obter produto',
+                'dados' => $produto
             ])->setStatusCode(200);
 
-        }catch (QueryException | \Exception $e){
-            $response->header('content-type','application/json')->setContent([
-                'message'=>$e->getMessage()
+        } catch (QueryException | \Exception $e) {
+            $response->header('content-type', 'application/json')->setContent([
+                'message' => $e->getMessage()
             ])->setStatusCode(422);
         }
 
