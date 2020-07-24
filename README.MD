@@ -79,4 +79,6 @@ E acesse o ip mencionado no comando, geralmente é:
 Uso do pacote phpunit/phpunit
 
 Execução dos testes:
+Por linha de comando:
+./vendor/phpunit --no-coverage
 
